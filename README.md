@@ -36,9 +36,13 @@ finally back into persistent storage.
 
 ## 📂 Project Structure
 ├── main.py 
+
 ├── conversation_memory.json 
+
 ├── .env 
+
 ├── .gitignore 
+
 ├── README.md
 
 ---
@@ -47,7 +51,10 @@ finally back into persistent storage.
 
 ### Create a `.env` file
 AZURE_ENDPOINT=https://your-azure-endpoint 
+
 AZURE_VERSION=2025-01-01-preview 
+
 AZURE_CHAT_DEPLOYMENT=azure.gpt-5
+
 AZURE_KEY=your_azure_openai_api_key
 
