@@ -50,11 +50,11 @@ finally back into persistent storage.
 ## 🔐 Environment Setup
 
 ### Create a `.env` file
-/// AZURE_ENDPOINT=https://your-azure-endpoint 
+'''' AZURE_ENDPOINT=https://your-azure-endpoint ''''
 
-/// AZURE_VERSION=2025-01-01-preview 
+'''' AZURE_VERSION=2025-01-01-preview 
 
-/// AZURE_CHAT_DEPLOYMENT=azure.gpt-5
+''''AZURE_CHAT_DEPLOYMENT=azure.gpt-5
 
-/// AZURE_KEY=your_azure_openai_api_key
+''''AZURE_KEY=your_azure_openai_api_key
 
