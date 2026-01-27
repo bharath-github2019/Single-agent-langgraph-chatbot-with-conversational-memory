@@ -35,15 +35,15 @@ finally back into persistent storage.
 ---
 
 ## 📂 Project Structure
-├── main.py 
+├── `react.py `
 
-├── conversation_memory.json 
+├── `conversation_memory.json `
 
-├── .env 
+├── `.env `
 
-├── .gitignore 
+├── `.gitignore `
 
-├── README.md
+├── `README.md`
 
 ---
 
