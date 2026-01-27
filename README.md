@@ -37,7 +37,7 @@ finally back into persistent storage.
 ## 📂 Project Structure
 ├── `react.py`
 
-├── `conversation_memory.json` (Created once the conversation starts
+├── `conversation_memory.json` (Created once the conversation starts)
 
 ├── `.env`
 
