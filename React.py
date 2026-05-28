@@ -16,11 +16,6 @@ from langgraph.graph import StateGraph, END
 from langgraph.prebuilt import ToolNode
 from langchain_openai import AzureChatOpenAI
 
-
-# =====================================================
-# Load Environment Variables
-# =====================================================
-
 load_dotenv(override=True)
 
 AZURE_ENDPOINT = os.getenv("AZURE_ENDPOINT")
@@ -30,11 +25,6 @@ AZURE_KEY = os.getenv("AZURE_KEY")
 
 if not all([AZURE_ENDPOINT, AZURE_VERSION, AZURE_CHAT_DEPLOYMENT, AZURE_KEY]):
     raise EnvironmentError("Missing one or more Azure OpenAI environment variables")
-
-
-# =====================================================
-# Tool Definitions
-# =====================================================
 
 @tool
 def add(a: int, b: int):
@@ -56,11 +46,6 @@ def multiply(a: int, b: int):
 
 TOOLS = [add, subtract, multiply]
 
-
-# =====================================================
-# Model Initialization
-# =====================================================
-
 model = AzureChatOpenAI(
     azure_endpoint=AZURE_ENDPOINT,
     azure_deployment=AZURE_CHAT_DEPLOYMENT,
@@ -71,18 +56,8 @@ model = AzureChatOpenAI(
 
 model_with_tools = model.bind_tools(TOOLS)
 
-
-# =====================================================
-# Agent State
-# =====================================================
-
 class AgentState(TypedDict):
     messages: Annotated[Sequence[BaseMessage], add_messages]
-
-
-# =====================================================
-# Agent Logic
-# =====================================================
 
 def model_call(state: AgentState) -> AgentState:
     system_message = SystemMessage(
@@ -109,10 +84,6 @@ def should_continue(state: AgentState):
     return "end"
 
 
-# =====================================================
-# LangGraph Construction
-# =====================================================
-
 graph = StateGraph(AgentState)
 
 graph.add_node("agent_calling", model_call)
@@ -133,11 +104,6 @@ graph.add_conditional_edges(
 graph.add_edge("tools", "agent_calling")
 
 app = graph.compile()
-
-
-# =====================================================
-# Conversation Memory
-# =====================================================
 
 class ConversationMemory:
     def __init__(self, memory_file="conversation_memory.json"):
@@ -206,11 +172,6 @@ class ConversationMemory:
             print(f"Agent: {conv['agent'][:120]}")
             print("-" * 40)
 
-
-# =====================================================
-# Streaming + Memory Capture
-# =====================================================
-
 def print_stream_with_memory(stream, memory, user_input):
     agent_response = ""
 
@@ -224,11 +185,6 @@ def print_stream_with_memory(stream, memory, user_input):
     if agent_response:
         memory.add_conversation(user_input, agent_response)
         memory.save_memory()
-
-
-# =====================================================
-# CLI Application
-# =====================================================
 
 def main():
     memory = ConversationMemory()
@@ -278,11 +234,6 @@ def main():
 
         except Exception as e:
             print(f"Agent Error: {e}")
-
-
-# =====================================================
-# Entry Point
-# =====================================================
 
 if __name__ == "__main__":
     main()
