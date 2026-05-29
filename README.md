@@ -39,9 +39,7 @@ finally back into persistent storage.
 
 ├── `conversation_memory.json` (Created once the conversation starts)
 
-├── `.env`
-
-├── `.gitignore`
+├── `.env` (Personalised)
 
 ├── `README.md`
 
